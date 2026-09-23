@@ -1,9 +1,5 @@
-//char *AUTHOR_NAME        = (char *) "Your Name";
-//char *AUTHOR_AUTHORSHIP  = (char *) "I acknowledge that I have worked on this
-// assignment independently, except where explicitly noted and referenced.
-// Any collaboration or use of external resources has been properly cited.
-// I am fully aware of the consequences of academic dishonesty and agree to
-// abide by the university's academic integrity policy.";
+char *AUTHOR_NAME        = (char *) "Kade Heggem";
+char *AUTHOR_AUTHORSHIP  = (char *) "I acknowledge that I have worked on this assignment independently, except where explicitly noted and referenced. Any collaboration or use of external resources has been properly cited. I am fully aware of the consequences of academic dishonesty and agree to abide by the university's academic integrity policy.";
 
 
 #include <stdio.h>
@@ -80,7 +76,15 @@ int   listLength  (Node *headPtr);
 
 static void _nullify(Node **nodePtrPtr)
 {
-    // TODO
+    if (nodePtrPtr == NULL)
+    {
+        return;
+    }
+
+    else {
+        *nodePtrPtr = NULL;
+    }
+
 }
 
 
@@ -98,8 +102,14 @@ static void _nullify(Node **nodePtrPtr)
 
 static Node* _findFirst(Node *headPtr)
 {
-    // TODO
-    return NULL;
+    if (headPtr == NULL) {
+        return NULL;
+    }
+
+    else {
+        return headPtr;
+    }
+
 }
 
 
@@ -121,8 +131,17 @@ static Node* _findFirst(Node *headPtr)
 
 static Node* _findLast(Node *headPtr)
 {
-    // TODO
-    return NULL;
+    Node *currentPtr = headPtr;
+
+    while (currentPtr->nextPtr != NULL) {
+        currentPtr++;
+    }
+
+    if (currentPtr == NULL)
+    {
+        return NULL;
+    }
+
 }
 
 
@@ -144,8 +163,21 @@ static Node* _findLast(Node *headPtr)
 
 static Node* _findValue(Node *headPtr, int value)
 {
-    // TODO
-    return NULL;
+
+    Node *currentPtr = headPtr;
+
+    while (currentPtr->nextPtr != value){
+        currentPtr++;
+
+        if (currentPtr->nextPtr == value) {
+            return currentPtr;
+        }
+    }
+    
+    if (currentPtr == NULL)
+    {
+        return NULL;
+    }
 }
 
 
@@ -173,7 +205,16 @@ static Node* _findValue(Node *headPtr, int value)
 
 void initNode(Node *nodePtr, int value)
 {
-    // TODO
+
+    if (nodePtr == NULL){
+        return;
+    }
+
+    else {
+    nodePtr->value = value;
+    nodePtr->nextPtr = NULL;
+    }
+
 }
 
 
@@ -196,8 +237,16 @@ void initNode(Node *nodePtr, int value)
 
 Node* createNode(int value)
 {
-    // TODO
-    return NULL;
+    Node *newNodePtr = malloc(sizeof(Node));
+
+    if (newNodePtr == NULL){
+        fprintf(stderr, "Error: malloc failed.\n");
+        return NULL;
+    }
+
+    initNode(newNodePtr, value);
+
+    return newNodePtr;
 }
 
 
@@ -218,7 +267,12 @@ Node* createNode(int value)
 
 void destroyNode(Node **nodePtrPtr)
 {
-    // TODO
+    if (nodePtrPtr == NULL || *nodePtrPtr == NULL){
+            return;
+        }
+
+    free(*nodePtrPtr);
+    _nullify(nodePtrPtr);
 }
 
 

@@ -52,7 +52,12 @@ int   listLength  (Node *headPtr);
 
 void test_initNode_sets_value(void)
 {
-        TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node a;
+    Node *aPtr = &a;
+
+    initNode(aPtr, 10);
+
+    TEST_ASSERT_EQUAL (10, a.value);
     
 }
 
@@ -67,8 +72,12 @@ void test_initNode_sets_value(void)
 
 void test_initNode_sets_next_null(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node a;
+    Node *aPtr = &a;
+
+    initNode(aPtr, 10);
+
+    TEST_ASSERT_NULL (aPtr->nextPtr);
 }
 
 
@@ -81,10 +90,7 @@ void test_initNode_sets_next_null(void)
 
 void test_initNode_null_guard(void)
 {
-    // TODO
-    initNode(NULL, 42);
-    TEST_ASSERT_TRUE_MESSAGE(1 == 1,
-        "Error: initNode must handle NULL without crashing.");
+    initNode(NULL, 0);
 }
 
 
@@ -98,8 +104,12 @@ void test_initNode_null_guard(void)
 
 void test_createNode_not_null(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node *returnedPtrPtr = createNode(10);
+
+    TEST_ASSERT_NOT_NULL (returnedPtrPtr);
+
+    destroyNode(&returnedPtrPtr);
+
 }
 
 
@@ -114,8 +124,11 @@ void test_createNode_not_null(void)
 
 void test_createNode_value(void)
 {
-    // TODO
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: implement this test.");
+    Node *returnedPtrPtr = createNode(10);
+
+    TEST_ASSERT_EQUAL (10, returnedPtrPtr->value);
+
+    destroyNode(&returnedPtrPtr);
 }
 
 
